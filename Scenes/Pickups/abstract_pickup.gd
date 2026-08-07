@@ -10,6 +10,9 @@ const pickup_lerp : float = 0.3
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority():
+		return
+	
 	if is_held and player_holding:
 		var camera_transform = player_holding.camera.global_transform
 		self.global_transform = self.global_transform.interpolate_with(camera_transform.translated_local(pickup_distance), pickup_lerp)
@@ -19,7 +22,9 @@ func update_state(player : Player) -> void:
 		player_holding = null
 		is_held = false
 		self.freeze = false
+		set_multiplayer_authority(1) ## Return Auth to host
 	else:
 		player_holding = player
 		self.freeze = true
 		is_held = true
+		set_multiplayer_authority(int(player.name)) ## Give Auth to user 

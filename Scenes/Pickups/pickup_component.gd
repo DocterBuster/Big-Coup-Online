@@ -1,1 +1,0 @@
-class_name PickupComponent extends Node

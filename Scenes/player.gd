@@ -7,12 +7,12 @@ const JUMP_SPEED := 5
 @onready var camera : Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
 @export var mouse_sensistivity = 0.5
-
 var held_pickup : AbstractPickup = null
 
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(name.to_int()))
+	print(name)
 
 
 func _input(event):
