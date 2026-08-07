@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c4rfkpnsukogs"]
 
+[ext_resource type="Script" uid="uid://dnrjakln6k7rk" path="res://DEBUG/debug_main.gd" id="1_rlasa"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ukl2"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,6 +37,7 @@ stencil_flags = 2
 material = SubResource("StandardMaterial3D_75mk4")
 
 [node name="DebugMain" type="Node3D" unique_id=196497353]
+script = ExtResource("1_rlasa")
 
 [node name="ConnectionMenu" type="CanvasLayer" parent="." unique_id=1296234333]
 
@@ -84,4 +87,5 @@ spawn_limit = 99
 
 [node name="PlayerPuppets" type="Node" parent="PlayerSpawns" unique_id=192231875]
 
-[connection signal="spawned" from="PlayerSpawns/MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
+[connection signal="pressed" from="ConnectionMenu/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="ConnectionMenu/Host" to="." method="_on_host_pressed"]
