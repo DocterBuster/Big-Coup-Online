@@ -82,6 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 0.8486978, 0.52887815, 0, -0.52887815, 0.848
 [node name="PlayerSpawns" type="Node" parent="." unique_id=445144878]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="PlayerSpawns" unique_id=274449182]
+_spawnable_scenes = PackedStringArray("uid://drh5jk8seryjx")
 spawn_path = NodePath("../PlayerPuppets")
 spawn_limit = 99
 
