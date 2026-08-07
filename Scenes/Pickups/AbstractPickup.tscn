@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b2sdvfrgsgl4i"]
 
 [ext_resource type="Script" uid="uid://88vmrmv6rh6m" path="res://Scenes/Pickups/abstract_pickup.gd" id="1_uhk76"]
+[ext_resource type="Script" uid="uid://bqnsvcrl16vbp" path="res://Scenes/Pickups/pickup_component.gd" id="2_mx180"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_clyq1"]
 
@@ -22,3 +23,6 @@ shape = SubResource("SphereShape3D_clyq1")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=291997863]
 replication_config = SubResource("SceneReplicationConfig_clyq1")
 visibility_update_mode = 1
+
+[node name="PickupComponent" type="Node" parent="." unique_id=1944068085]
+script = ExtResource("2_mx180")

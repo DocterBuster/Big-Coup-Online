@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 
 const WALK_SPEED := 5
@@ -52,5 +52,14 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	
+	## Check for Interact
+	if(Input.is_action_just_pressed("Interact")):
+		var colider = $Head/Interacct.get_collider()
+		if(colider):
+			if(colider is AbstractPickup):
+				pass
+	
 	
 	move_and_slide()
