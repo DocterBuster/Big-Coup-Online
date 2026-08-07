@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Big Coup Online"
-run/main_scene="uid://o8pin50u83ma"
+run/main_scene="uid://c4rfkpnsukogs"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://c4gpjvpbg6jp5"
 
@@ -24,12 +24,18 @@ NetworkManager="*uid://bjl4t4yrmhfp3"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godotsteam/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
 "res://Art/": "pink",
 "res://DEBUG/": "green",
-"res://Singletons/": "purple"
+"res://Scenes/": "red",
+"res://Singletons/": "purple",
+"res://addons/": "purple"
 }
 
 [physics]

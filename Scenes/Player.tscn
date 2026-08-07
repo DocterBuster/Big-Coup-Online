@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://drh5jk8seryjx"]
+
+[ext_resource type="Script" uid="uid://dkho1mgxuam3s" path="res://Scenes/player.gd" id="1_7mrbg"]
+[ext_resource type="Texture2D" uid="uid://bcn8w13ywwfiq" path="res://icon.svg" id="2_bsumw"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7mrbg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1d23g"]
+radius = 0.47753906
+height = 1.9824219
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsumw"]
+render_priority = 2
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.04
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+stencil_reference = 2
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mrbg"]
+render_priority = 1
+next_pass = SubResource("StandardMaterial3D_bsumw")
+albedo_color = Color(0.09180587, 0.3059621, 1, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_reference = 2
+stencil_outline_thickness = 0.04
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1d23g"]
+material = SubResource("StandardMaterial3D_7mrbg")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7mrbg"]
+material = SubResource("StandardMaterial3D_7mrbg")
+radius = 0.17822266
+height = 0.3564453
+
+[node name="Player" type="CharacterBody3D" unique_id=187785695]
+script = ExtResource("1_7mrbg")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1174246457]
+replication_config = SubResource("SceneReplicationConfig_7mrbg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=793017358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0087890625, 0)
+shape = SubResource("CapsuleShape3D_1d23g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1943281143]
+mesh = SubResource("CapsuleMesh_1d23g")
+
+[node name="Head" type="Node3D" parent="." unique_id=718693245]
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1303031715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97518706, -0.51665926)
+current = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Head" unique_id=825634419]
+transform = Transform3D(1, 0, 0, 0, 0.82316244, 0, 0, 0, 1, 0, 1.4849734, 0)
+texture = ExtResource("2_bsumw")
+
+[node name="Hands" type="Node3D" parent="." unique_id=74475556]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hands" unique_id=1706799516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50215167, 0.20661917, -0.7074203)
+mesh = SubResource("CapsuleMesh_7mrbg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Hands" unique_id=1623281676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.502, 0.207, -0.707)
+mesh = SubResource("CapsuleMesh_7mrbg")
