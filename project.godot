@@ -12,12 +12,24 @@ config_version=5
 
 config/name="Big Coup Online"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://c4gpjvpbg6jp5"
+
+[autoload]
+
+NetworkManager="*uid://bjl4t4yrmhfp3"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://Art/": "pink",
+"res://DEBUG/": "green",
+"res://Singletons/": "purple"
+}
 
 [physics]
 
