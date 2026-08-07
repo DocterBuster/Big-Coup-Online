@@ -24,6 +24,8 @@ func _on_join_pressed():
 	match NetworkManager.backend_type:
 		NetworkManager.BACKEND_TYPES.LAN:
 			NetworkManager.join_lan_lobby()
+		NetworkManager.BACKEND_TYPES.STEAM:
+			pass
 	
 	add_player(multiplayer.get_unique_id())
 	multiplayer_ui.hide()
