@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		var colider = $Head/Interacct.get_collider()
 		if(colider):
 			if(colider is AbstractPickup):
-				pass
+				colider.update_state(self)
 	
 	
 	move_and_slide()
