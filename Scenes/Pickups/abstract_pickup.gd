@@ -18,8 +18,8 @@ func update_state(player : Player) -> void:
 	if is_held:
 		player_holding = null
 		is_held = false
-		self.freeze = false
+		self.gravity_scale = 1.0
 	else:
 		player_holding = player
-		self.freeze = true
+		self.gravity_scale = 0.0
 		is_held = true

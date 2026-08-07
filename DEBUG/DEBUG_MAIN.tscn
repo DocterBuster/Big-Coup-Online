@@ -65,17 +65,6 @@ environment = SubResource("Environment_suc8q")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1976091263]
-transform = Transform3D(31.50614, 0, 0, 0, 1, 0, 0, 0, 19.832062, 0, 0, 0)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=90610154]
-shape = SubResource("BoxShape3D_75mk4")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1309747339]
-mesh = SubResource("BoxMesh_75mk4")
-
 [node name="PLAYER_SPAWN" type="Marker3D" parent="." unique_id=729401470]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.532, 0)
 
@@ -100,6 +89,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0560217, 4.4690504, 0)
 _spawnable_scenes = PackedStringArray("uid://b2sdvfrgsgl4i")
 spawn_path = NodePath("..")
 spawn_limit = 999
+
+[node name="Collision" type="Node" parent="." unique_id=615932472]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Collision" unique_id=1400913690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5216756, 0.81864595, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/StaticBody3D2" unique_id=130888775]
+shape = SubResource("BoxShape3D_75mk4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collision/StaticBody3D2" unique_id=306515305]
+mesh = SubResource("BoxMesh_75mk4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collision" unique_id=1976091263]
+transform = Transform3D(31.50614, 0, 0, 0, 1, 0, 0, 0, 19.832062, 0, 0, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision/StaticBody3D" unique_id=90610154]
+shape = SubResource("BoxShape3D_75mk4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collision/StaticBody3D" unique_id=1309747339]
+mesh = SubResource("BoxMesh_75mk4")
 
 [connection signal="pressed" from="ConnectionMenu/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="ConnectionMenu/Host" to="." method="_on_host_pressed"]
