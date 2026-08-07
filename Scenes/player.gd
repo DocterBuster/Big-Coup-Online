@@ -9,6 +9,8 @@ const JUMP_SPEED := 5
 @export var mouse_sensistivity = 0.5
 var held_pickup : AbstractPickup = null
 
+var lock_control : bool = false
+
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(name.to_int()))
@@ -16,7 +18,7 @@ func _enter_tree() -> void:
 
 
 func _input(event):
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() or lock_control:
 		return
 	
 	#Camera movement 
@@ -30,8 +32,13 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	camera.current = is_multiplayer_authority()
 	
-	if !is_multiplayer_authority():
+	if(Input.is_action_just_pressed("Pause")):
+		lock_control = !lock_control
+	
+	if !is_multiplayer_authority() or lock_control:
 		return
+	
+	
 	
 	#Movement code that is rotated to be relative to the camera position 
 	var movement = Input.get_vector("Left", "Right", "Forward", "Backward")
