@@ -35,9 +35,16 @@ func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_pressed("Pause")):
 		lock_control = !lock_control
 	
+	
+
+	
 	if !is_multiplayer_authority() or lock_control:
 		return
 	
+	
+	if(Input.is_action_just_pressed("DEBUG1")):
+		print("------ Calling RPC Debug! -------")
+		rpc_debug.rpc()
 	
 	
 	#Movement code that is rotated to be relative to the camera position 
@@ -74,3 +81,9 @@ func _physics_process(delta: float) -> void:
 					colider.update_state.rpc(self.name)
 	
 	move_and_slide()
+
+
+
+@rpc("call_local", "reliable")
+func rpc_debug():
+	print("rpc called for: "+ str(multiplayer.get_unique_id()))
