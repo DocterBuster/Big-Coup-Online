@@ -65,12 +65,12 @@ func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_pressed("Interact")):
 		## Drop a held pickup
 		if(held_pickup):
-			held_pickup.update_state(self)
+			held_pickup.update_state.rpc(self.name)
 		else:
 			var colider = $Head/Interacct.get_collider()
 			if(colider):
 				## Check if we can pick this up! 
 				if(colider is AbstractPickup and not held_pickup):
-					colider.update_state(self)
+					colider.update_state.rpc(self.name)
 	
 	move_and_slide()
