@@ -7,9 +7,10 @@ const JUMP_SPEED := 5
 @onready var camera : Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
 @export var mouse_sensistivity = 0.5
-var held_pickup : AbstractPickup = null
-
 var lock_control : bool = false
+
+
+var pickup_in_hand : AbstractPickup = null
 
 
 func _enter_tree() -> void:
@@ -70,15 +71,17 @@ func _physics_process(delta: float) -> void:
 	
 	## Check for Interact
 	if(Input.is_action_just_pressed("Interact")):
-		## Drop a held pickup
-		if(held_pickup):
-			held_pickup.update_state.rpc("1")
+		
+		## Drop a held pickup 
+		if(pickup_in_hand):
+			pickup_in_hand.update_state.rpc(self.name)
 		else:
-			var colider = $Head/Interacct.get_collider()
+			var colider = $Head/InteractCast.get_collider()
 			if(colider):
 				## Check if we can pick this up! 
-				if(colider is AbstractPickup and not held_pickup):
-					colider.update_state.rpc(self.name)
+				if(colider is AbstractPickup):
+					if(not pickup_in_hand and not colider.is_held):
+						colider.update_state.rpc(self.name)
 	
 	move_and_slide()
 
