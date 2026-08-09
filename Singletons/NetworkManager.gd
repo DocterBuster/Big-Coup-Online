@@ -6,10 +6,8 @@ signal host_created()
 ## When this client joins a lobby 
 signal joined_lobby()
 
-
 ## The peer of the client 
 var peer : MultiplayerPeer 
-
 
 
 ## Backend Selection
@@ -23,6 +21,7 @@ const LAN_PORT = 25565
 ## Steam Info
 const STEAM_LOBBY_TYPE := Steam.LobbyType.LOBBY_TYPE_FRIENDS_ONLY
 
+const PLAYER_COLORS = [Color(0.0, 0.0, 1.0, 1.0), Color(1.0, 0.0, 0.0, 1.0), Color(0.0, 1.0, 0.0, 1.0), Color(1.0, 1.0, 0.0, 1.0), Color(1.0, 0.0, 1.0, 1.0), Color(0.0, 1.0, 1.0, 1.0), Color(1.0, 0.533, 0.0, 1.0), Color(1.0, 1.0, 1.0, 1.0)]
 
 func _ready() -> void:
 	

@@ -4,18 +4,21 @@ class_name Player extends CharacterBody3D
 const WALK_SPEED := 5
 const JUMP_SPEED := 5
 
+
 @onready var camera : Camera3D = $Head/Camera3D
 @onready var head: Node3D = $Head
 @export var mouse_sensistivity = 0.5
+
+## What # player is this? (Not multiplayer ID!) 
+@export var player_number : int = -1 
+## If control should be locked (Debug testing mainly) 
 var lock_control : bool = false
-
-
+## The pickup in this player's hand
 var pickup_in_hand : AbstractPickup = null
 
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(name.to_int()))
-	print(name)
 
 
 func _input(event):
