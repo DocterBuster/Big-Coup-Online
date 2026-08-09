@@ -19,8 +19,12 @@ func _physics_process(delta: float) -> void:
 		self.global_transform = self.global_transform.interpolate_with(camera_transform.translated_local(pickup_distance), pickup_lerp)
 
 
-@rpc("call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func update_state(player_id : String) -> void:
+	
+	#_set_authority_rpc(int(player_id))
+	print("--------")
+
 	if is_held:
 		_set_authority_rpc(1) ## Return Auth to host
 		player_holding_id = "1"
@@ -29,8 +33,8 @@ func update_state(player_id : String) -> void:
 		self.freeze = false
 
 	else:
+		_set_authority_rpc(int(player_id)) ## Give Auth to user 
 		player_holding_id = player_id
-		_set_authority_rpc(int(player_holding_id)) ## Give Auth to user 
 		_player_holding = get_tree().current_scene.find_child(player_id, true, false)
 		self.freeze = true
 		is_held = true
@@ -38,6 +42,10 @@ func update_state(player_id : String) -> void:
 
 
 func _set_authority_rpc(new_peer_id: int) -> void:
-	print(new_peer_id)
+	
+	if(multiplayer.is_server()):
+		pass
+	
+	print("Client " + str(multiplayer.get_unique_id()), " Setting pickup to " + str(new_peer_id))
 	set_multiplayer_authority(new_peer_id)
 	$MultiplayerSynchronizer.set_multiplayer_authority(new_peer_id)
