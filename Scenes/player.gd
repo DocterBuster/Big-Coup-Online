@@ -77,14 +77,14 @@ func _physics_process(delta: float) -> void:
 		
 		## Drop a held pickup 
 		if(pickup_in_hand):
-			pickup_in_hand.update_state.rpc(self.name)
+			pickup_in_hand.player_drop.rpc()
 		else:
 			var colider = $Head/InteractCast.get_collider()
 			if(colider):
 				## Check if we can pick this up! 
 				if(colider is AbstractPickup):
 					if(not pickup_in_hand and not colider.is_held):
-						colider.update_state.rpc(self.name)
+						colider.player_pickup.rpc(self.name)
 	
 	move_and_slide()
 
